@@ -7,7 +7,6 @@ export default {
     }
 }
 
-const ingredientes = ['Alho', 'Manteiga', 'Orégano']
 </script>
 
 <template>
@@ -17,11 +16,16 @@ const ingredientes = ['Alho', 'Manteiga', 'Orégano']
                 Sua lista:
             </span>
 
-            <ul class="ingredientes-sua-lista">
-                <li v-for="ingrediente in ingredientes" :key="ingrediente" class="ingrediente">
+            <ul v-if="ingredientes.length != 0" class="ingredientes-sua-lista">
+                <li v-for="ingrediente in ingredientes" v-bind:key="ingrediente" class="ingrediente">
                     {{ ingrediente }}
                 </li>
             </ul>
+
+            <p v-else class="paragrafo lista-vazia">
+                <img src="../assets/images/icones/lista-vazia.svg">
+                Sua lista está vazia, selecione ingredientes para iniciar.
+            </p>
         </section>
     </main>
 </template>
