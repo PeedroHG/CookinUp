@@ -18,8 +18,8 @@ const ingredientes = ['Alho', 'Manteiga', 'Orégano']
             </span>
 
             <ul class="ingredientes-sua-lista">
-                <li v-for="ingrediente in ingredientes" class="ingrediente">
-                    {{ingrediente}}
+                <li v-for="ingrediente in ingredientes" :key="ingrediente" class="ingrediente">
+                    {{ ingrediente }}
                 </li>
             </ul>
         </section>
