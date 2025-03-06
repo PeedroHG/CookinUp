@@ -11,13 +11,13 @@ export default {
         }
     },
     async created() {
-        //this.receitas = await obterReceitas();
-        this.receitas = [];
+        this.receitas = await obterReceitas();
     },
     components: {
         CardReceita,
         BotaoPrincipal
-    }
+    },
+    emits: ['editarLista']
 }
 </script>
 
@@ -46,7 +46,7 @@ export default {
             <img src="../assets/images/sem-receitas.png">
         </div>
 
-        <BotaoPrincipal texto="Editar lista" />
+        <BotaoPrincipal texto="Editar lista" @click="$emit('editarLista')"/>
     </section>
 </template>
 
