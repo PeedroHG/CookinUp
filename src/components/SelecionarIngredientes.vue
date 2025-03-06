@@ -34,7 +34,7 @@ export default {
         </ul>
 
         <p class="paragrafo dica">
-            *Atenção: consideramos que você tem em casa sal, pimenta e água.
+            <b>Atenção:</b> consideramos que você tem em casa sal, pimenta e água.
         </p>
     </section>
 </template>
@@ -65,7 +65,6 @@ export default {
 }
 
 .dica {
-    align-self: flex-start;
     margin-bottom: 3.5rem;
 }
 
