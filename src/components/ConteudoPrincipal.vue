@@ -1,18 +1,21 @@
 <script lang="ts">
-import BotaoPrincipal from './BotaoPrincipal.vue';
+import MostrarReceitas from './MostrarReceitas.vue';
 import SelecionarIngredientes from './SelecionarIngredientes.vue';
 import Tag from './Tag.vue';
+
+type Pagina = 'SelecionarIngredientes' | 'MostrarReceitas'
 
 export default {
     data() {
         return {
-            ingredientes: [] as String[]
+            ingredientes: [] as String[],
+            conteudo: 'SelecionarIngredientes' as Pagina
         }
     },
     components: {
         SelecionarIngredientes,
         Tag,
-        BotaoPrincipal
+        MostrarReceitas
     },
     methods: {
         adicionarIngrediente(ingrediente: string) {
@@ -24,6 +27,9 @@ export default {
                 this.ingredientes.splice(index, 1);
             }
 
+        },
+        navegar(pagina: Pagina) {
+            this.conteudo = pagina;
         }
     }
 }
@@ -37,8 +43,8 @@ export default {
             </span>
 
             <ul v-if="ingredientes.length != 0" class="ingredientes-sua-lista">
-                <li v-for="ingrediente in ingredientes" v-bind:key="ingrediente" class="ingrediente">
-                    <Tag :texto="ingrediente" :ativa="true" />
+                <li v-for="ingrediente in ingredientes" v-bind:key="ingrediente as string" class="ingrediente">
+                    <Tag :texto="ingrediente as string" :ativa="true" />
                 </li>
             </ul>
 
@@ -48,8 +54,11 @@ export default {
             </p>
         </section>
 
-        <SelecionarIngredientes @adicionarIngrediente="adicionarIngrediente" @removerIngrediente="removerIngrediente" />
-        <BotaoPrincipal texto="Criar minha receita" />
+        <SelecionarIngredientes v-if="conteudo === 'SelecionarIngredientes'"
+            @adicionarIngrediente="adicionarIngrediente" @removerIngrediente="removerIngrediente"
+            @buscarReceitas="navegar('MostrarReceitas')" />
+
+        <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'" />
     </main>
 </template>
 
