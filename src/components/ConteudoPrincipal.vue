@@ -54,11 +54,15 @@ export default {
             </p>
         </section>
 
-        <SelecionarIngredientes v-if="conteudo === 'SelecionarIngredientes'"
-            @adicionarIngrediente="adicionarIngrediente" @removerIngrediente="removerIngrediente"
-            @buscarReceitas="navegar('MostrarReceitas')" />
+        <KeepAlive include="SelecionarIngredientes">
+            <SelecionarIngredientes v-if="conteudo === 'SelecionarIngredientes'"
+                @adicionarIngrediente="adicionarIngrediente" @removerIngrediente="removerIngrediente"
+                @buscarReceitas="navegar('MostrarReceitas')" />
 
-        <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'" @editarLista="navegar('SelecionarIngredientes')"/>
+            <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'"
+                @editarLista="navegar('SelecionarIngredientes')" />
+        </KeepAlive>
+
     </main>
 </template>
 
